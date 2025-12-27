@@ -1,5 +1,5 @@
 import React from "react";
-import { usePersistentToggle } from "@/hooks/usePersistentToggle";
+import { usePersistentToggle } from "@/hooks/usePersistentToggle.jsx";
 
 export default function CollapsibleSection({ title, count, id, children }) {
   // Persistent open/closed state using your custom hook

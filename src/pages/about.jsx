@@ -1,8 +1,8 @@
 // src/pages/About.jsx
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLiturgical } from "@/context/LiturgicalContext";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { useLiturgical } from "@/context/LiturgicalContext.jsx";
+import { usePageMeta } from "@/hooks/usePageMeta.jsx";
 
 export default function About() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function About() {
   // 2. SEO & Metadata via custom hook
   usePageMeta(
     "About the Project",
-    "Learn about the mission of CatholicParishes.org.",
+    "Learn about CatholicParishes.org.",
     banner
   );
 

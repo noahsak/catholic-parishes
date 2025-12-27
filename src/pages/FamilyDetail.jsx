@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useLightbox, Lightbox } from "@/hooks/lightbox";
-import { usePageMeta } from "@/hooks/usePageMeta"; // Import the hook
+import { useLightbox, Lightbox } from "@/hooks/lightbox.jsx";
+import { usePageMeta } from "@/hooks/usePageMeta.jsx";
 
 export default function FamilyDetail() {
   const navigate = useNavigate();

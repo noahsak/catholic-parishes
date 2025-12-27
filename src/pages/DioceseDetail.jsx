@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import externalLinkIcon from "../assets/external_link_white.png";
-import { useLightbox, Lightbox } from "../hooks/lightbox";
-import { usePageMeta } from "../hooks/usePageMeta"; // Import the hook
-import CollapsibleSection from "../hooks/CollapsibleSection"; 
+import { useLightbox, Lightbox } from "../hooks/lightbox.jsx";
+import { usePageMeta } from "../hooks/usePageMeta.jsx";
+import CollapsibleSection from "../hooks/CollapsibleSection.jsx"; 
 
 export default function DioceseDetail() {
   const navigate = useNavigate();

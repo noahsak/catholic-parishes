@@ -6,10 +6,10 @@ import { Link, useLocation } from "react-router-dom";
 import Fuse from "fuse.js";
 
 // Standardized imports
-import { iconPaths, dioIconPaths, accentColors, darkAccentColors } from "@/liturgicalColors";
-import { useLiturgical } from "@/context/LiturgicalContext"; 
-import { usePageMeta } from "@/hooks/usePageMeta"; 
-import RunningJesus from "@/components/RunningJesus"; 
+import { iconPaths, dioIconPaths, accentColors, darkAccentColors } from "@/liturgicalColors.jsx";
+import { useLiturgical } from "@/context/LiturgicalContext.jsx"; 
+import { usePageMeta } from "@/hooks/usePageMeta.jsx"; 
+import RunningJesus from "@/components/RunningJesus.jsx"; 
 
 const key = import.meta.env.VITE_STADIA_API_KEY;
 

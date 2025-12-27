@@ -3,10 +3,10 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 
 // Standardized Imports
 import externalLinkIcon from "@/assets/external_link_white.png";
-import { useLightbox, Lightbox } from "@/hooks/lightbox";
-import { useLiturgical } from "@/context/LiturgicalContext";
-import { usePageMeta } from "@/hooks/usePageMeta";
-import { accentColors, darkAccentColors } from "@/liturgicalColors";
+import { useLightbox, Lightbox } from "@/hooks/lightbox.jsx";
+import { useLiturgical } from "@/context/LiturgicalContext.jsx";
+import { usePageMeta } from "@/hooks/usePageMeta.jsx";
+import { accentColors, darkAccentColors } from "@/liturgicalColors.jsx";
 
 export default function ParishDetail() {
   const navigate = useNavigate();

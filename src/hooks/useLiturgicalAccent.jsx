@@ -1,13 +1,8 @@
 // src/hooks/useLiturgicalAccent.js
 import { useEffect } from "react";
-import { accentColors, darkAccentColors } from "@/liturgicalColors";
-import { iconPaths } from "@/data/iconPaths";
+import { accentColors, darkAccentColors } from "@/liturgicalColors.jsx";
+import { iconPaths } from "@/data/iconPaths.jsx";
 
-/**
- * Converts Hex to space-separated RGB numbers.
- * This format is required for Tailwind's / <alpha-value> syntax.
- * Example: #800080 -> 128 0 128
- */
 function hexToRgbValues(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return null;

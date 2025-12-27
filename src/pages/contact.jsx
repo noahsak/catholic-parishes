@@ -1,7 +1,7 @@
 // src/pages/Contact.jsx
 import React, { useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { usePageMeta } from "@/hooks/usePageMeta"; // Use your hook!
+import { usePageMeta } from "@/hooks/usePageMeta.jsx";
 
 export default function Contact() {
   const navigate = useNavigate();
