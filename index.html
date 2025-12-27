@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWXFW0C5GS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DWXFW0C5GS');
+    </script>
+
+    <meta name="description" content="Interactive map of Catholic parishes in Ontario. Includes Mass times, confession times, and Adoration times." />
+    <meta name="theme-color" content="#ffffff" id="themeColor" />
+
+    <title>Catholic Parishes</title>
+    <meta property="og:title" content="Catholic Parishes" />
+    <meta property="og:description" content="Interactive map of Catholic parishes in Ontario." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://catholicparishes.org" />
+    <meta property="og:image" content="/preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/icons/church_icon_blue_light180.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/church_icon_blue_light180.png" sizes="180x180" />
+
+    <script>
+      // The logic for your accent color remains the same
+      window.addEventListener("DOMContentLoaded", () => {
+        const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
+        const themeMetaTag = document.querySelector('meta[name="theme-color"]');
+        if (accent && themeMetaTag) { themeMetaTag.setAttribute("content", accent); }
+      });
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

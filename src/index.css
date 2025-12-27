@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/* Leaflet & Plugins */
+@import "leaflet/dist/leaflet.css";
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+
+/* 🌗 GLOBAL THEME VARIABLES */
+:root {
+  --background: #faf9fb;   
+  --foreground: #111827;   
+  --accent: #800080;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f0f;
+    --foreground: #f1f5f9;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  @apply transition-colors duration-300 antialiased overflow-x-hidden;
+}
+
+/* 🗺️ DYNAMIC POPUP STYLING */
+.custom-accent-popup .leaflet-popup-content-wrapper {
+  background-color: color-mix(in srgb, var(--accent), transparent 30%) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--popup-text, #ffffff) !important;
+  border-radius: 24px !important; 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.custom-accent-popup .leaflet-popup-tip {
+  background-color: color-mix(in srgb, var(--accent), transparent 30%) !important;
+}
+
+.custom-accent-popup .leaflet-popup-content {
+  /* Change margin slightly for mobile breathing room */
+  margin: 16px 20px !important; 
+  
+  /* FIXED: Use max-width and vw units so it shrinks on small screens */
+  width: 340px !important; /* Ideal desktop width */
+  max-width: 80vw !important; /* On mobile, it will never exceed 80% of screen width */
+  
+  line-height: 1.6 !important;
+  word-wrap: break-word; /* Ensures long addresses don't push the box out */
+}
+
+/* 🌟 MARKER CLUSTERS - Tiered Sizing & Liturgical Colors */
+
+/* Remove default Leaflet styling */
+.marker-cluster {
+  background: none !important;
+}
+
+/* Base styling for the inner circle */
+.marker-cluster div {
+  background-color: var(--accent) !important;
+  color: #ffffff !important; /* Default text color */
+  border-radius: 50%;
+  text-align: center;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.2s ease-out; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: auto; /* Required to center within the Leaflet icon container */
+}
+
+/* Fix text color for light liturgical seasons (White/Rose) */
+body.liturgical-white .marker-cluster div {
+  color: #000000 !important;
+}
+
+/* Small clusters (1-19 markers) */
+.marker-cluster-small div {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 13px !important;
+  /* Make small clusters slightly lighter */
+  background-color: color-mix(in srgb, var(--accent) 85%, white) !important; 
+}
+
+/* Medium clusters (20-99 markers) */
+.marker-cluster-medium div {
+  width: 38px !important; 
+  height: 38px !important;
+  font-size: 15px !important;
+  background-color: var(--accent) !important;
+}
+
+/* Large clusters (100+ markers) */
+.marker-cluster-large div {
+  width: 46px !important; 
+  height: 46px !important;
+  font-size: 17px !important;
+  /* Make large clusters slightly deeper */
+  background-color: color-mix(in srgb, var(--accent) 85%, black) !important; 
+}
+
+/* 🏃‍♂️ ANIMATIONS */
+@keyframes run-across {
+  0% { transform: translate(-100px, var(--startY)) rotate(var(--angle)); }
+  100% { transform: translate(100vw, var(--endY)) rotate(var(--angle)); }
+}
+
+/* 📌 User Location Dot */
+.user-location-dot {
+  width: 16px !important;
+  height: 16px !important;
+  background: url('/src/assets/blue_dot.png') no-repeat center center;
+  background-size: contain;
+  border-radius: 50%;
+  position: relative;
+  overflow: visible !important; 
+  z-index: 1000;
+}
+
+.user-location-dot::after {
+  content: '';
+  position: absolute;
+  width: 40px; 
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  background: url('/src/assets/blue_dot.png') no-repeat center center;
+  background-size: contain;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.3); opacity: 0.8; }
+  80%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* TOP LEFT MAP ZOOM CONTROL */
+.leaflet-top.leaflet-left {
+  /* Use top instead of margin for more stability in Safari */
+  top: 50px !important; 
+  left: 10px !important;
+  margin-top: 0 !important;
+  
+  /* Add safe area padding for iOS Safari (iPhone notch) */
+  padding-top: env(safe-area-inset-top, 0px);
+  
+  transition: top 0.3s ease;
+}
+
+/* MOBILE ADJUSTMENT (Phones) */
+@media (max-width: 767px) {
+  .leaflet-top.leaflet-left {
+    /* Standard offset + extra for your title + safe area */
+    top: calc(115px + env(safe-area-inset-top, 0px)) !important;
+  }
+}
+
+/* Optional: Make the zoom buttons match your theme's blur style */
+.leaflet-bar {
+  border: none !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden; /* Ensures the blur/background stays inside the rounded corners */
+}
+
+.leaflet-bar a {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #111827 !important; 
+  border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+}
+
+/* Dark mode overrides */
+.dark .leaflet-bar a {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .leaflet-bar a:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+@media (min-width: 768px) {
+  .fixed.left-3 {
+    bottom: 12px !important; /* Cluster */
+  }
+  .fixed.left-3:has(.relative.w-28) {
+    bottom: 64px !important; /* Theme */
+  }
+}
+

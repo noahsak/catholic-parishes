@@ -1,0 +1,37 @@
+/* src/App.css */
+
+/* Ensure the root takes up the full viewport for the map and overlays */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Smooth transitions for the liturgical accent color changes */
+:root {
+  transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom scrollbar to match the liturgical theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
+
+/* Fix for Leaflet controls being hidden by your header or modals */
+.leaflet-control-container {
+  z-index: 10;
+}
