@@ -88,24 +88,6 @@ export default function About() {
           ← Back
         </button>
 
-        {/* Mission Section */}
-        <section>
-          <p className="mt-2 text-white leading-relaxed">
-            Catholic Parishes is a project created by myself, Noah, a University student in Ontario, Canada. My goal for this website is to make it easier for people to participate in the sacraments and find the churches where they take place, whether at home or traveling.
-            <br /><br />
-            Currently, only the parishes in the Diocese of London have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
-            <br /><br />
-            If you would like to contribute in any way (providing photos, data, website development, etc.), please reach out to me at {" "}
-            <a
-              href={`mailto:${email}`}
-              className="text-blue-300 hover:text-blue-400 font-bold transition-colors"
-            >
-              {email}
-            </a>.
-            Thank you and God bless!
-          </p>
-        </section>
-
         {/* Why Liturgical Colour? */}
         <section>
           <h2 className="text-xl font-black mb-4 uppercase tracking-tight">Why <strong>{displayColor}</strong>?</h2>
@@ -137,7 +119,10 @@ export default function About() {
               </div>
             </div>
           </div>
+          </section>
 
+        {/* About Section */}
+        <section>
           <p className="mt-6 text-white leading-relaxed">
             As you can see, the site's accent colour is currently{" "}
             <span className="font-bold capitalize">{displayColor}</span>.
@@ -152,6 +137,25 @@ export default function About() {
             >
               romcal
             </a> database.
+          </p>
+        </section>
+
+        {/* Mission Section */}
+        <section>
+          <h2 className="text-xl font-black mb-4 uppercase tracking-tight">About</h2>
+          <p className="mt-2 text-white leading-relaxed">
+            Catholic Parishes is a project created by myself, Noah, a University student in Ontario, Canada. My goal for this website is to make it easier for people to participate in the sacraments and find the churches where they take place, whether at home or traveling.
+            <br /><br />
+            Currently, only the parishes in the Diocese of London have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
+            <br /><br />
+            If you would like to contribute in any way (providing photos, data, website development, etc.), please reach out to me at {" "}
+            <a
+              href={`mailto:${email}`}
+              className="text-blue-300 hover:text-blue-400 font-bold transition-colors"
+            >
+              {email}
+            </a>.
+            Thank you and God bless!
           </p>
         </section>
 

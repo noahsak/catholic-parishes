@@ -14,17 +14,17 @@ import blueLight from "@/assets/icons/church_icon_blue_light.png";
 import blueDark from "@/assets/icons/church_icon_blue_dark.png";
 
 import dioWhiteLight from "@/assets/dicons/dio_icon_white_light.png";
-import dioWhiteDark from "@/assets/dicons/dio_icon_white_dark.png";
+// import dioWhiteDark from "@/assets/dicons/dio_icon_white_dark.png";
 import dioRedLight from "@/assets/dicons/dio_icon_red_light.png";
-import dioRedDark from "@/assets/dicons/dio_icon_red_dark.png";
+// import dioRedDark from "@/assets/dicons/dio_icon_red_dark.png";
 import dioGreenLight from "@/assets/dicons/dio_icon_green_light.png";
-import dioGreenDark from "@/assets/dicons/dio_icon_green_dark.png";
+// import dioGreenDark from "@/assets/dicons/dio_icon_green_dark.png";
 import dioPurpleLight from "@/assets/dicons/dio_icon_purple_light.png";
-import dioPurpleDark from "@/assets/dicons/dio_icon_purple_dark.png";
+// import dioPurpleDark from "@/assets/dicons/dio_icon_purple_dark.png";
 import dioRoseLight from "@/assets/dicons/dio_icon_rose_light.png";
-import dioRoseDark from "@/assets/dicons/dio_icon_rose_dark.png";
+// import dioRoseDark from "@/assets/dicons/dio_icon_rose_dark.png";
 import dioBlueLight from "@/assets/dicons/dio_icon_blue_light.png";
-import dioBlueDark from "@/assets/dicons/dio_icon_blue_dark.png";
+// import dioBlueDark from "@/assets/dicons/dio_icon_blue_dark.png";
 
 export const accentColors = {
   WHITE: "#FFFFFF",
@@ -58,12 +58,12 @@ export const iconPaths = {
 };
 
 export const dioIconPaths = {
-  WHITE: { light: dioWhiteLight, dark: dioWhiteDark },
-  RED: { light: dioRedLight, dark: dioRedDark },
-  GREEN: { light: dioGreenLight, dark: dioGreenDark },
-  PURPLE: { light: dioPurpleLight, dark: dioPurpleDark },
-  ROSE: { light: dioRoseLight, dark: dioRoseDark },
-  BLUE: { light: dioBlueLight, dark: dioBlueDark },
+  WHITE: { light: dioWhiteLight, dark: dioWhiteLight },
+  RED: { light: dioRedLight, dark: dioRedLight },
+  GREEN: { light: dioGreenLight, dark: dioGreenLight },
+  PURPLE: { light: dioPurpleLight, dark: dioPurpleLight },
+  ROSE: { light: dioRoseLight, dark: dioRoseLight },
+  BLUE: { light: dioBlueLight, dark: dioBlueLight },
   // Fallback for Black (usually uses Purple or White icons)
-  BLACK: { light: dioWhiteLight, dark: dioWhiteDark },
+  BLACK: { light: dioWhiteLight, dark: dioWhiteLight },
 };
