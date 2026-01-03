@@ -289,7 +289,7 @@ export default function ParishDetail() {
                   const s = slugs[i]?.trim();
                   return (
                     <React.Fragment key={i}>
-                      {s ? <Link to={`/parish/${s}`} className="underline text-blue-300">{name.trim()}</Link> : name.trim()}
+                      {s ? <Link to={`/parish/${s}`} className="text-blue-300">{name.trim()}</Link> : name.trim()}
                       {i < parish.shareBuildingName.split(";").length - 1 ? ", " : ""}
                     </React.Fragment>
                   );

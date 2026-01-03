@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef, useCallback, memo} from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, ZoomControl } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-cluster'; 
 import L from "leaflet";
@@ -33,22 +33,58 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
   return L.latLng(lat1, lon1).distanceTo(L.latLng(lat2, lon2));
 };
 
-const matchesDay = (times, day) => {
+const matchesDay = (times, targetDay) => {
   if (!times?.length) return false;
-  day = day.toLowerCase();
-  const daysOfWeek = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+  
+  const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  const targetIdx = daysOfWeek.indexOf(targetDay.toLowerCase());
+  if (targetIdx === -1) return false;
+
   return times.some(t => {
-    const lower = t.toLowerCase();
-    if (lower.includes(day)) return true;
-    if (lower.includes("overnight")) {
-      const startDayMatch = /(\w+)\s+\d{1,2}:\d{2}/.exec(lower);
-      if (startDayMatch) {
-        const startDay = startDayMatch[1].toLowerCase();
-        const startIdx = daysOfWeek.indexOf(startDay);
-        const nextIdx = (startIdx + 1) % 7;
-        if (daysOfWeek[nextIdx] === day) return true;
+    const lower = t.toLowerCase().replace(/–/g, "-"); // Normalize dashes
+
+    // Handle ranges like "Monday 00:00-Sunday 23:59"
+    const rangeMatch = lower.match(/(\w+)\s+[\d:]+\s*-\s*(\w+)\s+[\d:]+/);
+    if (rangeMatch) {
+      const startIdx = daysOfWeek.indexOf(rangeMatch[1]);
+      const endIdx = daysOfWeek.indexOf(rangeMatch[2]);
+      
+      if (startIdx !== -1 && endIdx !== -1) {
+        // If start is Monday (1) and end is Sunday (0), it covers everything
+        if (startIdx <= endIdx) {
+          return targetIdx >= startIdx && targetIdx <= endIdx;
+        } else {
+          // Range wraps around weekend (e.g., Saturday to Tuesday)
+          return targetIdx >= startIdx || targetIdx <= endIdx;
+        }
       }
     }
+
+    // Handle simple day matches or "First Friday"
+    if (lower.includes(targetDay.toLowerCase())) return true;
+
+    // Handle overnight spans on single days (e.g., "Friday 20:00-07:30")
+    // This assumes if it starts Friday night, it counts for Saturday morning too
+    if (lower.includes("-")) {
+      const parts = lower.split(/\s+/); // ["friday", "20:00-07:30"]
+      const timePart = parts.find(p => p.includes("-"));
+      if (timePart) {
+        const [startT, endT] = timePart.split("-");
+        const startHour = parseInt(startT);
+        const endHour = parseInt(endT);
+        
+        // If end time is smaller than start time, it crossed midnight
+        if (endHour < startHour) {
+          const dayOfEntry = daysOfWeek.find(d => lower.includes(d));
+          if (dayOfEntry) {
+            const entryIdx = daysOfWeek.indexOf(dayOfEntry);
+            const nextDayIdx = (entryIdx + 1) % 7;
+            return targetIdx === nextDayIdx;
+          }
+        }
+      }
+    }
+
     return false;
   });
 };
@@ -364,40 +400,36 @@ const SetView = ({ coords, zoom, onComplete }) => {
   return null;
 };
 
-const DioceseMarkers = ({ dioceses, dioIcon, popupTextColor, popupBgColor }) => {
+const DioceseMarkers = memo(({ dioceses, dioIcon, popupTextColor, popupBgColor }) => {
   const transparentBg = hexToRgba(popupBgColor, 0.7); 
+
   return (
     <>
-      {dioceses.map((dio, idx) => (
+      <style>{`
+        .custom-accent-popup .leaflet-popup-content-wrapper,
+        .custom-accent-popup .leaflet-popup-tip {
+          background-color: ${transparentBg} !important;
+          color: ${popupTextColor} !important;
+          backdrop-filter: blur(4px);
+        }
+        .link-hover-effect:hover .arrow-move {
+          transform: translateX(4px);
+        }
+      `}</style>
+      
+      {dioceses.map((dio) => (
         <Marker 
-          key={`dio-${idx}`} 
+          key={dio.dioceseSlug || `${dio.dioLat}-${dio.dioLong}`} 
           position={[dio.dioLat, dio.dioLong]} 
           icon={dioIcon} 
-          zIndexOffset={1000} 
+          zIndexOffset={-100} 
         >
           <Popup className="custom-accent-popup" maxWidth={340} minWidth={200} autoPanPadding={[20, 20]}>
-            <style>{`
-              .custom-accent-popup .leaflet-popup-content-wrapper,
-              .custom-accent-popup .leaflet-popup-tip {
-                background-color: ${transparentBg} !important;
-                color: ${popupTextColor} !important;
-                backdrop-filter: blur(4px);
-              }
-              .link-hover-effect:hover .arrow-move {
-                transform: translateX(4px);
-              }
-            `}</style>
             <div style={{ color: popupTextColor }}>
               {dio.dioceseSlug ? (
-                <Link 
-                  to={`/diocese/${dio.dioceseSlug}`} 
-                  style={{ color: popupTextColor }} 
-                  className="group link-hover-effect no-underline block mb-2"
-                >
+                <Link to={`/diocese/${dio.dioceseSlug}`} style={{ color: popupTextColor }} className="group link-hover-effect no-underline block mb-2">
                   <div className="flex items-start justify-between gap-4">
-                    <span className="font-black text-xl leading-tight hover:underline">
-                      {dio.dioceseName}
-                    </span>
+                    <span className="font-black text-xl leading-tight hover:underline">{dio.dioceseName}</span>
                     <span className="shrink-0 flex items-center gap-1 text-[10px] font-black bg-white/20 px-2 py-1 rounded mt-1 transition-all group-hover:bg-white/40">
                       MORE INFO <span className="arrow-move transition-transform inline-block">→</span>
                     </span>
@@ -406,11 +438,8 @@ const DioceseMarkers = ({ dioceses, dioIcon, popupTextColor, popupBgColor }) => 
               ) : (
                 <div className="font-black text-xl leading-tight mb-2">{dio.dioceseName}</div>
               )}
-
               <div className="mb-2 text-sm opacity-90">{dio.dioceseAddress}</div>
-              
               <div className="h-px w-full bg-current opacity-20 my-3" />
-
               <div className="space-y-3">
                 {dio.bishop && (
                   <div className="text-sm">
@@ -418,7 +447,6 @@ const DioceseMarkers = ({ dioceses, dioIcon, popupTextColor, popupBgColor }) => 
                     <span className="font-bold">{dio.bishop}</span>
                   </div>
                 )}
-
                 <div className="grid grid-cols-2 gap-4 bg-black/10 rounded-lg p-3">
                   <div className="flex flex-col">
                     <span className="text-[10px] uppercase font-bold opacity-60">Parishes</span>
@@ -436,37 +464,35 @@ const DioceseMarkers = ({ dioceses, dioIcon, popupTextColor, popupBgColor }) => 
       ))}
     </>
   );
-};
+});
 
-const ParishMarkers = ({ parishes, churchIcon, popupTextColor, popupBgColor }) => {
+const ParishMarkers = memo(({ parishes, churchIcon, popupTextColor, popupBgColor }) => {
   const transparentBg = hexToRgba(popupBgColor, 0.7);
+
   return (
     <>
-      {parishes.map((parish, idx) => (
-        <Marker key={`${idx}-${popupBgColor}`} position={[parish.lat, parish.long]} icon={churchIcon}>
+      <style>{`
+        .custom-accent-popup .leaflet-popup-content-wrapper,
+        .custom-accent-popup .leaflet-popup-tip {
+          background-color: ${transparentBg} !important;
+          color: ${popupTextColor} !important;
+          backdrop-filter: blur(4px);
+        }
+      `}</style>
+
+      {parishes.map((parish) => (
+        <Marker 
+          key={parish.parishSlug || `${parish.lat}-${parish.long}`} 
+          position={[parish.lat, parish.long]} 
+          icon={churchIcon} 
+          zIndexOffset={-110}
+        >
           <Popup className="custom-accent-popup" maxWidth={340} minWidth={200} autoPanPadding={[20, 20]}>
-            <style>{`
-              .custom-accent-popup .leaflet-popup-content-wrapper,
-              .custom-accent-popup .leaflet-popup-tip {
-                background-color: ${transparentBg} !important;
-                color: ${popupTextColor} !important;
-                backdrop-filter: blur(4px);
-              }
-              .link-hover-effect:hover .arrow-move {
-                transform: translateX(4px);
-              }
-            `}</style>
             <div style={{ color: popupTextColor }}>
               {parish.parishSlug ? (
-                <Link 
-                  to={`/parish/${parish.parishSlug}`} 
-                  style={{ color: popupTextColor }} 
-                  className="group link-hover-effect no-underline block mb-2"
-                >
+                <Link to={`/parish/${parish.parishSlug}`} style={{ color: popupTextColor }} className="group link-hover-effect no-underline block mb-2">
                   <div className="flex items-start justify-between gap-4">
-                    <span className="font-black text-xl leading-tight hover:underline">
-                      {parish.parishName}
-                    </span>
+                    <span className="font-black text-xl leading-tight hover:underline">{parish.parishName}</span>
                     <span className="shrink-0 flex items-center gap-1 text-[10px] font-black bg-white/20 px-2 py-1 rounded mt-1 transition-all group-hover:bg-white/40">
                       MORE INFO <span className="arrow-move transition-transform inline-block">→</span>
                     </span>
@@ -475,9 +501,7 @@ const ParishMarkers = ({ parishes, churchIcon, popupTextColor, popupBgColor }) =
               ) : (
                 <div className="font-black text-xl leading-tight mb-2">{parish.parishName}</div>
               )}
-
               <div className="mb-3 text-sm opacity-90">{parish.parishAddress}</div>
-              
               <div className="space-y-2 border-t border-white/10 pt-2">
                 {parish._sunday?.length > 0 && <div className="text-xs"><strong>Sunday:</strong> {parish._sunday.join(", ")}</div>}
                 {parish._daily?.length > 0 && <div className="text-xs"><strong>Daily:</strong> {parish._daily.join(", ")}</div>}
@@ -490,7 +514,7 @@ const ParishMarkers = ({ parishes, churchIcon, popupTextColor, popupBgColor }) =
       ))}
     </>
   );
-};
+});
 
 const Map = () => {
   const { colorKey } = useLiturgical();
@@ -521,6 +545,16 @@ const Map = () => {
   const popupBgColor = useMemo(() => (
     prefersDark ? (darkAccentColors[colorKey] || darkAccentColors.GREEN) : (accentColors[colorKey] || accentColors.GREEN)
   ), [colorKey, prefersDark]);
+
+const customClusterIcon = useCallback((cluster) => {
+  const count = cluster.getChildCount();
+  const sizeClass = count >= 100 ? 'large' : count >= 20 ? 'medium' : 'small';
+  return L.divIcon({
+    html: `<div><span>${count}</span></div>`,
+    className: `marker-cluster marker-cluster-${sizeClass}`,
+    iconSize: [46, 46],
+  });
+}, []);
 
   const fuse = useMemo(() => new Fuse(parishes, {
     keys: ["parishName", "parishAddress", "city"],
@@ -647,20 +681,41 @@ const Map = () => {
     }
   }, []);
 
-  const filteredParishes = useMemo(() => {
-    return parishes.filter(p => {
-      let typeMatch = (filterType === "any") || (filterType === "mass" && (p._sunday.length || p._daily.length)) || (filterType === "confession" && p._confession.length) || (filterType === "adoration" && p._adoration.length);
-      if (!typeMatch) return false;
-      if (filterDay === "any") return true;
-      const d = filterDay.toLowerCase();
-      if (filterType === "mass") {
-        if (d === "saturday-vigil") return p._sunday.some(t => t.toLowerCase().includes("saturday"));
-        if (d === "sunday") return p._sunday.some(t => t.toLowerCase().includes(d));
-        return p._daily.some(t => t.toLowerCase().includes(d));
-      }
-      return (filterType === "confession") ? p._confession.some(t => t.toLowerCase().includes(d)) : matchesDay(p._adoration, d);
-    });
-  }, [parishes, filterType, filterDay]);
+const filteredParishes = useMemo(() => {
+  return parishes.filter(p => {
+    // 1. Check if the parish even has the requested activity
+    const hasMass = p._sunday.length > 0 || p._daily.length > 0;
+    const hasConfession = p._confession.length > 0;
+    const hasAdoration = p._adoration.length > 0;
+
+    let typeMatch = (filterType === "any") || 
+                   (filterType === "mass" && hasMass) || 
+                   (filterType === "confession" && hasConfession) || 
+                   (filterType === "adoration" && hasAdoration);
+
+    if (!typeMatch) return false;
+    if (filterDay === "any") return true;
+
+    const d = filterDay.toLowerCase();
+
+    // 2. Specific filtering by day
+    if (filterType === "mass") {
+      if (d === "saturday-vigil") return p._sunday.some(t => t.toLowerCase().includes("saturday"));
+      if (d === "sunday") return p._sunday.some(t => t.toLowerCase().includes("sunday"));
+      return p._daily.some(t => t.toLowerCase().includes(d));
+    }
+
+    if (filterType === "confession") {
+      return matchesDay(p._confession, d);
+    }
+
+    if (filterType === "adoration") {
+      return matchesDay(p._adoration, d);
+    }
+
+    return true;
+  });
+}, [parishes, filterType, filterDay]);
 
   const churchIcon = useMemo(() => new L.Icon({
     iconUrl: iconPaths[colorKey]?.[prefersDark ? "dark" : "light"] || iconPaths.DEFAULT?.light,
@@ -749,7 +804,7 @@ const LiturgicalMapBadge = ({ name, season, loading, prefersDark }) => {
 };
 
   const savedCenter = sessionStorage.getItem("mapCenter");
-  const initialCenter = savedCenter ? JSON.parse(savedCenter) : [42.7258, -81.9591];
+  const initialCenter = savedCenter ? JSON.parse(savedCenter) : [43.1977, -81.0706]; // Default
   const initialZoom = parseInt(sessionStorage.getItem("mapZoom")) || 8;
   const tileUrl = prefersDark ? `https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=${key}` : `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${key}`;
   const badgeActive = !loading && name;
@@ -791,7 +846,7 @@ const LiturgicalMapBadge = ({ name, season, loading, prefersDark }) => {
       />
       
       <div className="absolute inset-0 z-0">
-        <MapContainer center={initialCenter} zoom={initialZoom} className="h-full w-full" zoomControl={false}>
+        <MapContainer center={initialCenter} zoom={initialZoom} className="h-full w-full" zoomControl={false} preferCanvas={true}>
           <TileLayer url={tileUrl} />
           <ZoomControl position="topleft" />
           <MapInstanceCapture />
@@ -806,16 +861,9 @@ const LiturgicalMapBadge = ({ name, season, loading, prefersDark }) => {
 
           {isClusteringEnabled ? (
             <MarkerClusterGroup 
-              key={`cluster-${popupBgColor}`} disableClusteringAtZoom={12} chunkedLoading
-              iconCreateFunction={(cluster) => {
-                const count = cluster.getChildCount();
-                const sizeClass = count >= 100 ? 'large' : count >= 20 ? 'medium' : 'small';
-                return L.divIcon({
-                  html: `<div><span>${count}</span></div>`,
-                  className: `marker-cluster marker-cluster-${sizeClass}`,
-                  iconSize: L.point(46, 46),
-                });
-              }}
+              removeOutsideVisibleBounds={true}
+              key={`cluster-${popupBgColor}`} disableClusteringAtZoom={12} animate={true} animateAddingMarkers={false} chunkedLoading
+              iconCreateFunction={customClusterIcon}
             >
               <ParishMarkers parishes={filteredParishes} churchIcon={churchIcon} popupTextColor={popupTextColor} popupBgColor={popupBgColor} />
             </MarkerClusterGroup>

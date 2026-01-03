@@ -185,9 +185,9 @@ export default function About() {
           <div className="mt-4 text-white leading-relaxed">
             I am working on adding more parishes to the map. The parishes from these dioceses are next:
             <ul className="list-disc list-inside mt-3 space-y-2 font-medium opacity-90">
-              <li>Diocese of Hamilton</li>
               <li>Diocese of St. Catharines</li>
               <li>Archdiocese of Toronto</li>
+              <li>Diocese of Peterbourgh</li>
             </ul>
           </div>
         </section>
