@@ -70,17 +70,47 @@ export default function DioceseDetail() {
             scriptTag.type = "application/ld+json";
             document.head.appendChild(scriptTag);
           }
+          const images = found.diocesePhotos
+            ? found.diocesePhotos.split(";").map(u => u.trim()).filter(Boolean)
+            : [];
+
           const schemaData = {
             "@context": "https://schema.org",
-            "@type": "GovernmentOrganization", 
+            "@type": "Organization",
+            "@id": `${window.location.origin}/diocese/${found.dioceseSlug}#diocese`,
             "name": found.dioceseName,
+            "url": found.dioceseUrl || window.location.href,
+            "description": `Roman Catholic Diocese of ${found.dioceseName}`,
+            "foundingDate": found.DioceseEstablishedDate || found.DioceseEstablishedYear,
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": found.dioceseAddress || ""
+              "streetAddress": found.dioceseAddress,
+              "addressRegion": found.dioceseProvinceState,
+              "addressCountry": found.dioceseCountry
             },
-            "url": window.location.href,
-            "description": `Roman Catholic ${found.dioceseName}.`
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": found.dioLat,
+              "longitude": found.dioLong
+            },
+            "hasMap": `https://www.google.com/maps?q=${found.dioLat},${found.dioLong}`,
+            "telephone": found.bishopPhone || "",
+            "email": found.bishopEmail || "",
+            "leader": {
+              "@type": "Person",
+              "name": found.bishop,
+              "jobTitle": "Bishop"
+            },
+            ...(images.length > 0 && { image: images }),
+            "department": found.dioceseCathedralSlug
+              ? {
+                  "@type": "Church",
+                  "name": found.dioceseCathedral,
+                  "url": `${window.location.origin}/parish/${found.dioceseCathedralSlug}`
+                }
+              : undefined
           };
+
           scriptTag.text = JSON.stringify(schemaData);
         }
       } catch (err) {

@@ -93,25 +93,55 @@ export default function ParishDetail() {
           const schemaId = "parish-ld-json";
           let scriptTag = document.getElementById(schemaId);
           if (!scriptTag) {
-            scriptTag = document.createElement('script');
+            scriptTag = document.createElement("script");
             scriptTag.id = schemaId;
             scriptTag.type = "application/ld+json";
             document.head.appendChild(scriptTag);
           }
-          
-          const schemaData = {
-            "@context": "https://schema.org",
-            "@type": "Church",
-            "name": pData.parishName,
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": pData.parishAddress
-            },
-            "url": window.location.href,
-            "telephone": pData.parishPhone || ""
-          };
+
+        const images = pData.parishPhotos
+          ? pData.parishPhotos.split(";").map(u => u.trim()).filter(Boolean)
+          : [];
+
+        const schemaData = {
+          "@context": "https://schema.org",
+          "@type": "Church",
+          "@id": `${window.location.origin}/parish/${pData.parishSlug}#church`,
+          "name": pData.parishName,
+          "url": window.location.href,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": window.location.href
+          },
+          "telephone": pData.parishPhone || "",
+          "email": pData.parishEmail || "",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": pData.parishAddress,
+            "addressLocality": pData.parishCityCounty,
+            "addressRegion": pData.parishProvinceState,
+            "addressCountry": pData.parishCountry
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": pData.lat,
+            "longitude": pData.long
+          },
+          "hasMap": `https://www.google.com/maps?q=${pData.lat},${pData.long}`,
+          ...(images.length > 0 && { image: images }),
+          "sameAs": pData.website ? [pData.website] : [],
+          "parentOrganization": {
+            "@type": "CatholicDiocese",
+            "name": pData.parishDiocese,
+            "url": pData.dioceseUrl
+          }
+        };
+
+
+
           scriptTag.text = JSON.stringify(schemaData);
         }
+
       })
       .catch(() => alive && setParish(null));
     
