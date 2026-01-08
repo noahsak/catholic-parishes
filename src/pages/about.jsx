@@ -153,7 +153,26 @@ export default function About() {
             </a>
             . My goal for this website is to make it easier for people to participate in the sacraments and find the churches where they take place, whether at home or traveling.
             <br /><br />
-            Currently, only the parishes in the Diocese of London have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
+            Currently, only the parishes in Southwestern Ontario have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
+            <br /><br />
+            If you would like to see the code behind this website, it is avaliable on {" "}
+            <a
+              href="https://github.com/noahsak/catholic-parishes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-300 hover:text-blue-400 font-bold"
+            >
+              GitHub
+            </a>.
+            If you would like to see where I get the Parish Directory / Lists for each diocese, you can find that {" "}
+            <a
+              href="https://docs.google.com/spreadsheets/d/12kcXywCu0bZ7WgdZRnuzKoWdprBdlXcQKT4ieM2v7c8/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-300 hover:text-blue-400 font-bold"
+            >
+              here
+            </a>.
             <br /><br />
             If you would like to contribute in any way (providing photos, data, website development, etc.), please reach out to me at {" "}
             <a
