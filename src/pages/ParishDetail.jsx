@@ -19,7 +19,7 @@ export default function ParishDetail() {
   // We pass the dynamic values. If parish is null/undefined, the hook uses defaults.
   usePageMeta(
     parish?.parishName, 
-    parish ? `Find Sunday and Daily Mass, confession, and adoration times for ${parish.parishName} in ${parish.parishAddress}.` : null,
+    parish ? `Find Sunday and Daily Mass, confession, and adoration times for ${parish.parishName} at ${parish.parishAddress}.` : null,
     parish?.photos?.[0]
   );
 

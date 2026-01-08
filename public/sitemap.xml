@@ -17,6 +17,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.catholicparishes.org/search</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.catholicparishes.org/parish/our-lady-of-perpetual-help-olph-windsor</loc>
     <lastmod>2025-11-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -179,7 +184,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.catholicparishes.org/parish/st-josephine-bakhite-community-london</loc>
+    <loc>https://www.catholicparishes.org/parish/st-josephine-bakhita-community-london</loc>
     <lastmod>2025-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -695,13 +700,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.catholicparishes.org/parish/holy-trinity-ingersoll</loc>
+    <loc>https://www.catholicparishes.org/parish/holy-trinity-woodstock</loc>
     <lastmod>2025-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.catholicparishes.org/parish/sacred-heart-woodstock</loc>
+    <loc>https://www.catholicparishes.org/parish/sacred-heart-ingersoll</loc>
     <lastmod>2025-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -768,7 +773,7 @@
   </url>
   <url>
     <loc>https://www.catholicparishes.org/parish/basilica-of-our-lady-immaculate-guelph</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -786,7 +791,7 @@
   </url>
   <url>
     <loc>https://www.catholicparishes.org/parish/canadian-martyrs-hamilton</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -989,7 +994,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.catholicparishes.org/parish/sacred-heart-mildway</loc>
+    <loc>https://www.catholicparishes.org/parish/sacred-heart-mildmay</loc>
     <lastmod>2025-12-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -1619,12 +1624,287 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.catholicparishes.org/parish/cathedral-of-st-catherine-of-alexandria-st-catharines</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/our-lady-of-hungary-welland</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/our-lady-of-peace-niagara-falls</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/our-lady-of-perpetual-help-st-catharines</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/our-lady-of-the-holy-rosary-thorold</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/our-lady-of-the-scapular-niagara-falls</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/immaculee-conception-st-catharines</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/sacre-coeur-welland</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/saint-antoine-de-padoue-niagara-falls</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/saint-jean-de-brebeuf-port-colborne</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/sacred-heart-niagara-falls</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-alexander-fonthill</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-alfred-st-catharines</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-aloysius-thorold</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-andrew-the-apostle-welland</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-ann-fenwick</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-ann-niagara-falls</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-anthony-welland</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-denis-st-catharines</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-elizabeth-wainfleet</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-george-crystal-beach</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-helen-beamsville</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-john-bosco-port-colborne</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-joseph-grimsby</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-joseph-snyder</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-julia-st-catharines</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-kevin-welland</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-martin-of-tours-smithville</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-mary-of-the-assumption-st-catharines</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-mary-welland</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-mary-hagersville</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-ann-jarvis</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-michael-fort-erie</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-michael-the-archangel-dunnville</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-patrick-caledonia</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-patrick-niagara-falls</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-patrick-port-colborne</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-patrick-st-catharines</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-stephen-cayuga</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-therese-of-lisieux-port-colborne</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-thomas-aquinas-st-catharines</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-thomas-more-niagara-falls</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/st-vincent-de-paul-niagara-on-the-lake</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/star-of-the-sea-st-catharines</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/parish/sts-peter-paul-welland</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.catholicparishes.org/diocese/diocese-of-london-canada</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.catholicparishes.org/diocese/diocese-of-hamilton-canada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/diocese/diocese-of-st-catharines-canada</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1925,6 +2205,16 @@
   </url>
   <url>
     <loc>https://www.catholicparishes.org/family/st-peter-and-the-missions</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/family/sacred-heart-and-st-joseph-diocese-of-st-catharines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.catholicparishes.org/family/st-mary-and-st-ann-diocese-of-st-catharines</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -133,7 +133,7 @@ export default function About() {
               href="https://romcal.js.org" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="underline text-blue-300 hover:text-blue-400 font-bold"
+              className="text-blue-300 hover:text-blue-400 font-bold"
             >
               romcal
             </a> database.
@@ -144,7 +144,14 @@ export default function About() {
         <section>
           <h2 className="text-xl font-black mb-4 uppercase tracking-tight">About</h2>
           <p className="mt-2 text-white leading-relaxed">
-            Catholic Parishes is a project created by myself, Noah, a University student in Ontario, Canada. My goal for this website is to make it easier for people to participate in the sacraments and find the churches where they take place, whether at home or traveling.
+            Catholic Parishes is a project created by myself, Noah, a University student in Ontario, Canada in the {" "}
+            <a
+            href="/diocese/diocese-of-london-canada"
+            className=" text-blue-300 hover:text-blue-400 font-bold"
+            >
+              Diocese of London
+            </a>
+            . My goal for this website is to make it easier for people to participate in the sacraments and find the churches where they take place, whether at home or traveling.
             <br /><br />
             Currently, only the parishes in the Diocese of London have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
             <br /><br />
@@ -185,9 +192,9 @@ export default function About() {
           <div className="mt-4 text-white leading-relaxed">
             I am working on adding more parishes to the map. The parishes from these dioceses are next:
             <ul className="list-disc list-inside mt-3 space-y-2 font-medium opacity-90">
-              <li>Diocese of St. Catharines</li>
               <li>Archdiocese of Toronto</li>
               <li>Diocese of Peterbourgh</li>
+              <li>Archdiocese of Kingston</li>
             </ul>
           </div>
         </section>

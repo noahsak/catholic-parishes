@@ -222,7 +222,7 @@ export default function DioceseDetail() {
             {diocese.vicarGeneralPhone && <div><strong>Vicar General Phone:</strong> {diocese.vicarGeneralPhone}</div>}
             {diocese.vicarGeneralEmail && (
               <div><strong>Vicar General Email:</strong>{" "}
-                <a href={`mailto:${diocese.vicarGeneralEmail}`} className="underline text-blue-300 hover:text-blue-200 transition-colors">
+                <a href={`mailto:${diocese.vicarGeneralEmail}`} className="text-blue-300 hover:text-blue-200 transition-colors">
                   {diocese.vicarGeneralEmail}
                 </a>
               </div>
