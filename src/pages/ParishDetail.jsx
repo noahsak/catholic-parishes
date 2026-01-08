@@ -124,16 +124,21 @@ export default function ParishDetail() {
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": pData.lat,
-            "longitude": pData.long
+            "latitude": Number(pData.lat),
+            "longitude": Number(pData.long)
           },
           "hasMap": `https://www.google.com/maps?q=${pData.lat},${pData.long}`,
           ...(images.length > 0 && { image: images }),
           "sameAs": pData.website ? [pData.website] : [],
           "parentOrganization": {
-            "@type": "CatholicDiocese",
+            "@type": "Organization",
             "name": pData.parishDiocese,
             "url": pData.dioceseUrl
+          },
+          "amenityFeature": {
+            "@type": "LocationFeatureSpecification",
+            "name": "Place of Worship",
+            "value": true
           }
         };
 

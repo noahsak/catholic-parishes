@@ -70,17 +70,14 @@ export default function DioceseDetail() {
             scriptTag.type = "application/ld+json";
             document.head.appendChild(scriptTag);
           }
-          const images = found.diocesePhotos
-            ? found.diocesePhotos.split(";").map(u => u.trim()).filter(Boolean)
-            : [];
-
+        
           const schemaData = {
             "@context": "https://schema.org",
             "@type": "Organization",
             "@id": `${window.location.origin}/diocese/${found.dioceseSlug}#diocese`,
             "name": found.dioceseName,
             "url": found.dioceseUrl || window.location.href,
-            "description": `Roman Catholic Diocese of ${found.dioceseName}`,
+            "description": `Roman Catholic ${found.dioceseName}`,
             "foundingDate": found.DioceseEstablishedDate || found.DioceseEstablishedYear,
             "address": {
               "@type": "PostalAddress",
@@ -90,8 +87,8 @@ export default function DioceseDetail() {
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": found.dioLat,
-              "longitude": found.dioLong
+              "latitude": Number(found.dioLat),
+              "longitude": Number(found.dioLong)
             },
             "hasMap": `https://www.google.com/maps?q=${found.dioLat},${found.dioLong}`,
             "telephone": found.bishopPhone || "",
@@ -101,7 +98,6 @@ export default function DioceseDetail() {
               "name": found.bishop,
               "jobTitle": "Bishop"
             },
-            ...(images.length > 0 && { image: images }),
             "department": found.dioceseCathedralSlug
               ? {
                   "@type": "Church",
