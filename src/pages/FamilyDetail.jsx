@@ -18,7 +18,7 @@ export default function FamilyDetail() {
 
   usePageMeta(
     family ? family.familyName : null,
-    family ? `Find the parishes, Mass statistics, and contact information for the ${family.familyName} in ${family.familyCityCounty}.` : null,
+    family ? `Find the parishes, Mass statistics, and contact information for the ${family.familyName} in ${family.familyDeanery}, ${family.familyProvince}, ${family.familyCountry}.` : null,
     banner
   );
 
