@@ -141,9 +141,11 @@ export default function About() {
         </section>
 
         {/* Mission Section */}
-        <section>
+        <section> 
           <h2 className="text-xl font-black mb-4 uppercase tracking-tight">About</h2>
+          
           <p className="mt-2 text-white leading-relaxed">
+            {/*
             Catholic Parishes is a project created by myself, Noah, a University student in Ontario, Canada in the {" "}
             <a
             href="/diocese/diocese-of-london-canada"
@@ -155,6 +157,8 @@ export default function About() {
             <br /><br />
             Currently, only the parishes in Southwestern Ontario have been inputted into the website's database, but I am slowly working on adding more. Eventually, I hope to include parishes from across the world.
             <br /><br />
+            */
+            }
             If you would like to see the code behind this website, it is avaliable on {" "}
             <a
               href="https://github.com/noahsak/catholic-parishes"
@@ -173,15 +177,15 @@ export default function About() {
             >
               here
             </a>.
-            <br /><br />
+            <br /><br /> {/*
             If you would like to contribute in any way (providing photos, data, website development, etc.), please reach out to me at {" "}
             <a
               href={`mailto:${email}`}
               className="text-blue-300 hover:text-blue-400 font-bold transition-colors"
             >
               {email}
-            </a>.
-            Thank you and God bless!
+            </a>. 
+            Thank you and God bless! */}
           </p>
         </section>
 
@@ -205,7 +209,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Roadmap */}
+        {/*
         <section>
           <h2 className="text-xl font-black uppercase tracking-tight">Upcoming Dioceses</h2>
           <div className="mt-4 text-white leading-relaxed">
@@ -217,7 +221,8 @@ export default function About() {
             </ul>
           </div>
         </section>
-
+          */}
+          
         <div className="pt-6 border-t border-white/10">
           <Link
             to="/"
